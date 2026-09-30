@@ -1,0 +1,76 @@
+configuration {
+    show-icons: true;
+    icon-theme: "Tela";
+    font: "JetBrains Mono 9";
+}
+
+* {
+    bg: #FFFFFF;
+    bg-sel: #0000001F;
+    fg: #1A1A1A;
+    accent: #3366CC;
+    border-col: #294172;
+    
+    /* Warna garis tengah (Ungu / #800080) */
+    separator-col: #800080;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    location: south west;
+    anchor: south west;
+    x-offset: 15px;
+    y-offset: -55px;
+
+    width: 320px;
+    border: 2px;
+    border-color: @border-col;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: @bg;
+}
+
+mainbox {
+    children: [ listview ];
+}
+
+listview {
+    lines: 6;
+    columns: 2;
+    spacing: 0px;
+    cycle: true;
+    dynamic: true;
+}
+
+element {
+    padding: 8px 10px;
+    margin: 0px;
+    border-radius: 0px;
+    orientation: horizontal;
+    background-color: transparent;
+}
+
+/* Trik Rasi Native: Memberikan border kanan tipis hanya pada teks/area dalam element */
+element-icon {
+    size: 24px;
+    margin: 0 8px 0 0;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align: 0.5;
+    background-color: transparent;
+}
+
+/* Efek saat aplikasi dipilih/hovered */
+element selected {
+    background-color: @bg-sel;
+    text-color: @accent;
+    border-radius: 4px;
+}
+
+element-text selected {
+    text-color: @accent;
+}

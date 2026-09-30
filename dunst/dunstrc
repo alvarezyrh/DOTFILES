@@ -1,0 +1,23 @@
+[global]
+    font = JetBrains Mono 9
+    format = "<b>%s</b>\n%b"
+    geometry = "300x5-20+45"
+    corner_radius = 6
+    background = "#FFFFFF"
+    foreground = "#1A1A1A"
+    frame_color = "#E0E0E0"
+    frame_width = 1
+    timeout = 5
+
+[urgency_low]
+    background = "#FFFFFF"
+    foreground = "#777777"
+
+[urgency_normal]
+    background = "#FFFFFF"
+    foreground = "#1A1A1A"
+
+[urgency_critical]
+    background = "#FFFFFF"
+    foreground = "#D32F2F"
+    frame_color = "#D32F2F"

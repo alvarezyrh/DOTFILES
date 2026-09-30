@@ -1,0 +1,101 @@
+cat << 'EOF' > ~/.config/sxhkd/sxhkdrc
+# =====================================================================
+# SXHKD CONFIGURATION - BSPWM FULL SETUP
+# Path: ~/.config/sxhkd/sxhkdrc
+# =====================================================================
+
+# --- APLIKASI & LAUNCHER ---
+
+super + Return
+	kitty
+
+super + d
+	rofi -show drun -theme ~/.config/rofi/config.rasi
+
+super + m
+	rofi -show apps -modi "apps:~/.config/rofi/apps-menu.sh" -theme ~/.config/rofi/apps-popup.rasi
+
+super + x
+	rofi -show power-menu -modi "power-menu:~/.config/rofi/powermenu.sh" -theme ~/.config/rofi/config.rasi
+
+# Toggle / Spawn AI Launcher
+super + shift + a
+	~/.local/bin/ai-launcher
+
+
+# --- MANAJEMEN SISTEM & RELOAD ---
+
+# Reload SXHKD (Reload keybindings)
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Restart / Reload BSPWM Config (SUDAH DIPERBAIKI)
+super + shift + r
+	bspc wm -r
+
+# Quit BSPWM
+super + shift + q
+	bspc quit
+
+
+# --- MANAJEMEN JENDELA (WINDOW MANAGEMENT) ---
+
+super + {_,shift + }c
+	bspc node -{c,k}
+
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+super + shift + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+super + f
+	bspc node -t \~fullscreen
+
+super + space
+	bspc node -t \~floating
+
+
+# --- RESIZE JENDELA (WINDOW RESIZING) ---
+
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0 || bspc node -z right -20 0,\
+	              bottom 0 +20 || bspc node -z top 0 +20,\
+	              top 0 -20 || bspc node -z bottom 0 -20,\
+	              right +20 0 || bspc node -z left +20 0}
+
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0 || bspc node -z right -20 0,\
+	              bottom 0 +20 || bspc node -z top 0 +20,\
+	              top 0 -20 || bspc node -z bottom 0 -20,\
+	              right +20 0 || bspc node -z left +20 0}
+
+
+# --- MANAJEMEN WORKSPACE (NAVIGASI & PINDAH) ---
+
+super + {1-5}
+	bspc desktop -f '^{1-5}'
+
+super + shift + {1-5}
+	bspc node -d '^{1-5}'
+
+super + shift + {Right,Left}
+	bspc desktop -f {next.local,prev.local}
+
+super + Tab
+	bspc desktop -f last
+
+
+# --- KONTROL MEDIA & VOLUME ---
+
+XF86AudioRaiseVolume
+	pamixer -i 5
+
+XF86AudioLowerVolume
+	pamixer -d 5
+
+XF86AudioMute
+	pamixer -t
+EOF
+
+pkill -USR1 -x sxhkd

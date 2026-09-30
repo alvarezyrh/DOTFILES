@@ -1,0 +1,43 @@
+configuration {
+    modi: "drun,run";
+    font: "JetBrains Mono 10";
+    show-icons: true;
+    icon-theme: "Tela";
+    drun-display-format: "{name}";
+}
+
+* {
+    bg: #FFFFFF;
+    bg-sel: #F0F0F0;
+    fg: #1A1A1A;
+    accent: #000000;
+    border-col: #E0E0E0;
+    background-color: @bg;
+    text-color: @fg;
+}
+
+window {
+    width: 25%;
+    border: 1px;
+    border-color: @border-col;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+entry {
+    placeholder: "Search applications...";
+    padding: 8px;
+    margin: 0 0 10px 0;
+    border: 0 0 1px 0;
+    border-color: @border-col;
+}
+
+element {
+    padding: 8px;
+    border-radius: 4px;
+}
+
+element selected {
+    background-color: @bg-sel;
+    text-color: @accent;
+}

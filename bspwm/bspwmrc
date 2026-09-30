@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# =====================================================================
+# BSPWM CONFIGURATION
+# Path: ~/.config/bspwm/bspwmrc
+# =====================================================================
+
+# --- 1. JALANKAN DAEMON & PROSES UTAMA ---
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x dunst > /dev/null || dunst &
+pgrep -x picom > /dev/null || picom --config ~/.config/picom/picom.conf -b &
+sh ~/.fehbg &
+# pgrep -x conky > /dev/null || conky -c ~/.config/conky/conky.conf &
+
+# Restart Polybar
+pkill polybar
+polybar main -c ~/.config/polybar/config.ini &
+
+
+# --- 2. PENGATURAN WORKSPACE ---
+
+# Urutan Workspace (Menggunakan Nerd Font Glyph):
+# Index ^1 =  (Terminal)
+# Index ^2 = 󰈹 (Web Browser)
+# Index ^3 =  (Code Editor / Dev)
+# Index ^4 =  (File Manager)
+# Index ^5 = 󰎈 (Music / Media)
+bspc monitor -d "" "󰈹" "" "" "󰎈"
+
+
+# --- 3. TAMPILAN WINDOW & GAPS (Clean Light Style) ---
+
+bspc config top_padding        0
+bspc config border_width       2
+bspc config window_gap        12
+bspc config split_ratio       0.50
+
+# Warna Border (Light Theme)
+bspc config normal_border_color  "#294172"
+bspc config active_border_color  "#B0B0B0"
+bspc config focused_border_color "#7C3AED"
+
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# Set GTK Icon Theme
+gsettings set org.gnome.desktop.interface icon-theme 'Gruvbox-Plus-Light' &
+
+
+# --- 4. ATURAN JENDELA (WINDOW RULES) ---
+
+# Aturan Aplikasi Melayang (Floating)
+bspc rule -a Pavucontrol state=floating
+
+# Aturan Otomatis Pindah Workspace (Berdasarkan Urutan Index ^1 - ^5)
+bspc rule -a org.mozilla.firefox desktop='^2' follow=on
+bspc rule -a Thunar desktop='^4' follow=on
+bspc rule -a kitty='^1' follow=on

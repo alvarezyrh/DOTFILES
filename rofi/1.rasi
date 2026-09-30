@@ -1,0 +1,114 @@
+configuration {
+    modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "";
+    drun-display-format:        "{name}\n<span size='small' alpha='50%'>{comment}</span>";
+    font:                       "Sans 10";
+}
+
+* {
+    bg-main:                    #ffffff;
+    bg-sidebar:                 #f0f0f0;
+    bg-selected:                #c0c0c0;
+    fg-text:                    #000000;
+    border-radius:              12px;
+}
+
+window {
+    transparency:               "real";
+    background-color:           @bg-main;
+    border-radius:              12px;
+    width:                      550px;
+    height:                     600px;
+    padding:                    10px;
+    children:                   [ "mainbox" ];
+}
+
+mainbox {
+    background-color:           transparent;
+    orientation:                horizontal;
+    children:                   [ "left-pane", "right-pane" ];
+}
+
+/* Kolom Kiri: Header & Kategori */
+left-pane {
+    background-color:           @bg-sidebar;
+    width:                      220px;
+    border-radius:              10px;
+    padding:                    10px;
+    orientation:                vertical;
+    children:                   [ "user-profile", "mode-switcher", "power-bar" ];
+}
+
+user-profile {
+    orientation:                horizontal;
+    background-color:           transparent;
+    padding:                    10px 0px;
+    children:                   [ "user-icon", "user-name" ];
+}
+
+user-name {
+    str:                        "Doni Ramdhani";
+    expand:                     true;
+    text-color:                 @fg-text;
+    vertical-align:             0.5;
+}
+
+mode-switcher {
+    orientation:                vertical;
+    background-color:           transparent;
+}
+
+/* Kolom Kanan: Daftar Aplikasi & Input Pencarian */
+right-pane {
+    background-color:           transparent;
+    padding:                    10px;
+    orientation:                vertical;
+    children:                   [ "listview", "entry-box" ];
+}
+
+listview {
+    background-color:           transparent;
+    columns:                    1;
+    lines:                      6;
+    spacing:                    8px;
+    cycle:                      true;
+    dynamic:                    true;
+}
+
+element {
+    background-color:           transparent;
+    padding:                    8px;
+    border-radius:              8px;
+    orientation:                horizontal;
+    children:                   [ "element-icon", "element-text" ];
+}
+
+element selected {
+    background-color:           @bg-selected;
+}
+
+element-icon {
+    size:                       32px;
+    padding:                    0px 10px 0px 0px;
+}
+
+element-text {
+    vertical-align:             0.5;
+    text-color:                 @fg-text;
+}
+
+entry-box {
+    orientation:                horizontal;
+    background-color:           transparent;
+    border:                     1px;
+    border-color:               #3b82f6;
+    border-radius:              6px;
+    padding:                    5px;
+    children:                   [ "entry" ];
+}
+
+entry {
+    placeholder:                "Cari aplikasi...";
+    text-color:                 @fg-text;
+}
